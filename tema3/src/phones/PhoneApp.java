@@ -27,11 +27,13 @@ public class PhoneApp {
 		
 		List<Phone> phoneList = new ArrayList<Phone>();
 
-		Phone samsungYoung = new SamsungYoung(12, "alb");
+		SamsungYoung samsungYoung = new SamsungYoung(12, "alb");
 		Phone samsungGalaxy = new SamsungGalaxyS6(15, "negru", "metal");
-		Phone huaweiP20 = new HuaweiP20(17, "verde", "plastic");
+		Huawei huaweiP20 = new HuaweiP20(17, "verde", "plastic");
 		Phone huaweiMateSE = new HuaweiMateSE(19, "roz", "mixt");
-
+		
+		samsungYoung.setImei("120tres45328hht560");
+		
 		phoneList.add(samsungYoung);
 		phoneList.add(samsungGalaxy);
 		phoneList.add(huaweiP20);
