@@ -8,7 +8,7 @@ import java.util.List;
 public class TestFile {
 	public static void main(String[] args) {
 
-		boolean stopGame = true;
+		boolean stopGame = false;
 		int contor = 0;
 		List<String> lines = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class TestFile {
 
 		Direction direction = new Direction(startStone, estBorder, westBorder);
 
-		TileA tileA = new TileA(startStone, columns, direction.getDirection());
+		TileA tileA = new TileA(startStone, columns, direction.getDirection(),northBorder,southBorder,estBorder,westBorder);
 		Tile tile = tileA;
 
 		do {
@@ -35,16 +35,15 @@ public class TestFile {
 				contor = 0;
 				System.out.println(tile.getClass().getSimpleName());
 				stopGame = tile.stopGame(northBorder, southBorder, estBorder, westBorder);
-				stopGame=tile.borderOvercome(northBorder, southBorder, estBorder, westBorder);
 				startStone = tile.nextFreeStone(direction.getDirection());
-				tile = tile.nextTile(startStone, columns, direction.getDirection());
+				tile = tile.nextTile(startStone, columns);
 			} else {
 				contor++;
-				tile = tile.nextTile(startStone, columns, direction.getDirection());
+				tile = tile.nextTile(startStone, columns);
 			}
 			if (contor > 3) {
 				stopGame = true;
-				System.out.println(contor);
+				System.out.println("Wrong Data Input " + contor);
 			}
 		} while (!stopGame);
 

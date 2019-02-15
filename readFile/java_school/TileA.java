@@ -7,10 +7,22 @@ public class TileA implements Tile {
 	public List<Integer> shapeTileA = new ArrayList<>();
 	private int startStone;
 	private int tileBorder;
+	String direction ;
+	List<Integer> northBorder;
+	List<Integer> southBorder;
+	List<Integer> estBorder;
+	List<Integer> westBorder;
 
-	public TileA(int startStone, int columns, String direction) {
+	public TileA(int startStone, int columns, String direction, List<Integer> northBorder, List<Integer> southBorder,
+			List<Integer> estBorder, List<Integer> westBorder) {
 		this.startStone = startStone;
 		this.tileBorder = startStone;
+		this.direction = direction;
+		this.northBorder = northBorder;
+		this.southBorder = southBorder;
+		this.estBorder = estBorder;
+		this.westBorder = westBorder;
+
 		if (direction == "leftToRight") {
 			shapeTileA.add(startStone);
 			shapeTileA.add(startStone + 1);
@@ -27,10 +39,22 @@ public class TileA implements Tile {
 
 	@Override
 	public boolean isPlaceble(List<Integer> blokedStone) {
-		if (shapeTileA.containsAll(blokedStone)) {
+		if (tileContainsStone(blokedStone)) {
+			return false;
+		}
+		if (borderOvercome()) {
 			return false;
 		}
 		return true;
+	}
+
+	private boolean tileContainsStone(List<Integer> blockedStone) {
+		for (int stone : shapeTileA) {
+			if(blockedStone.contains(stone)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -63,23 +87,21 @@ public class TileA implements Tile {
 	}
 
 	@Override
-	public Tile nextTile(int startStone, int columns, String direction) {
-		return new TileB(startStone, columns, direction);
+	public Tile nextTile(int startStone, int columns) {
+		return new TileB(startStone, columns, direction, northBorder, southBorder, estBorder, westBorder);
 	}
-	
-	@Override
-	public boolean borderOvercome(List<Integer> northBorder, List<Integer> southBorder, List<Integer> estBorder,
-			List<Integer> westBorder) {
-		if(northBorder.containsAll(shapeTileA)) {
+
+	private boolean borderOvercome() {
+		if (tileContainsStone(northBorder)) {
 			return true;
 		}
-		if(southBorder.containsAll(shapeTileA)) {
+		if (tileContainsStone(southBorder)) {
 			return true;
 		}
-		if(estBorder.containsAll(shapeTileA)) {
+		if (direction == "rightToLeft" && tileContainsStone(estBorder)) {
 			return true;
 		}
-		if(westBorder.containsAll(shapeTileA)) {
+		if (direction == "leftToRight" && tileContainsStone(westBorder)) {
 			return true;
 		}
 		return false;
