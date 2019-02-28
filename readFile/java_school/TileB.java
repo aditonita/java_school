@@ -25,9 +25,9 @@ public class TileB implements Tile {
 
 		if (direction == "leftToRight") {
 			shapeTileB.add(startStone);
+			shapeTileB.add(startStone + columns - 1);
 			shapeTileB.add(startStone + columns);
-			shapeTileB.add(startStone + columns + 1);
-			tileBorder = startStone + columns + 1;
+			tileBorder = startStone + columns;
 		}
 		if (direction == "rightToLeft") {
 			shapeTileB.add(startStone);
@@ -50,7 +50,7 @@ public class TileB implements Tile {
 
 	private boolean tileContainsStone(List<Integer> blockedStone) {
 		for (int stone : shapeTileB) {
-			if(blockedStone.contains(stone)) {
+			if (blockedStone.contains(stone)) {
 				return true;
 			}
 		}
@@ -77,12 +77,12 @@ public class TileB implements Tile {
 		if (southBorder.contains(tileBorder)) {
 			return true;
 		}
-		if (estBorder.contains(tileBorder)) {
+		if (direction == "rightToLeft" && estBorder.contains(tileBorder)) {
 			return true;
 		}
-		if (westBorder.contains(tileBorder)) {
-			return true;
-		}
+//		if (direction == "leftToRight" && westBorder.contains(tileBorder)) {
+//			return true;
+//		}
 		return false;
 	}
 

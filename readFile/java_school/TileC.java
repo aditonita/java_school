@@ -25,17 +25,17 @@ public class TileC implements Tile {
 
 		if (direction == "leftToRight") {
 			shapeTileC.add(startStone);
-			shapeTileC.add(startStone + columns);
-			shapeTileC.add(startStone + 2 * columns);
+			shapeTileC.add(startStone + 1);
+			shapeTileC.add(startStone + columns + 1);
 			shapeTileC.add(startStone + 2 * columns + 1);
 			tileBorder = startStone + 2 * columns + 1;
 		}
 		if (direction == "rightToLeft") {
 			shapeTileC.add(startStone);
-			shapeTileC.add(startStone + columns);
-			shapeTileC.add(startStone + 2 * columns);
-			shapeTileC.add(startStone + 2 * columns - 1);
-			tileBorder = startStone + 2 * columns - 1;
+			shapeTileC.add(startStone - columns);
+			shapeTileC.add(startStone - 2 * columns);
+			shapeTileC.add(startStone - 2 * columns - 1);
+			tileBorder = startStone - 2 * columns - 1;
 		}
 	}
 
@@ -79,10 +79,10 @@ public class TileC implements Tile {
 		if (southBorder.contains(tileBorder)) {
 			return true;
 		}
-		if (estBorder.contains(tileBorder)) {
-			return true;
-		}
-		if (westBorder.contains(tileBorder)) {
+//		if (estBorder.contains(tileBorder)) {
+//			return true;
+//		}
+		if (direction == "leftToRight" && westBorder.contains(tileBorder)) {
 			return true;
 		}
 		return false;

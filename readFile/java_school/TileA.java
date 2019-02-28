@@ -33,7 +33,7 @@ public class TileA implements Tile {
 			shapeTileA.add(startStone);
 			shapeTileA.add(startStone - 1);
 			shapeTileA.add(startStone - 2);
-			this.tileBorder = startStone + 2;
+			this.tileBorder = startStone - 2;
 		}
 	}
 
@@ -77,10 +77,10 @@ public class TileA implements Tile {
 		if (southBorder.contains(tileBorder)) {
 			return true;
 		}
-		if (estBorder.contains(tileBorder)) {
+		if (direction == "rightToLeft" && estBorder.contains(tileBorder)) {
 			return true;
 		}
-		if (westBorder.contains(tileBorder)) {
+		if (direction == "leftToRight" && westBorder.contains(tileBorder)) {
 			return true;
 		}
 		return false;

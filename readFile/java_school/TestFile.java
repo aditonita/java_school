@@ -1,7 +1,5 @@
 package java_school;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +25,8 @@ public class TestFile {
 
 		Direction direction = new Direction(startStone, estBorder, westBorder);
 
-		TileA tileA = new TileA(startStone, columns, direction.getDirection(),northBorder,southBorder,estBorder,westBorder);
+		TileA tileA = new TileA(startStone, columns, direction.getDirection(), northBorder, southBorder, estBorder,
+				westBorder);
 		Tile tile = tileA;
 
 		do {
